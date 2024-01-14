@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Criação de Layout</title>
+
+</head>
+<body>
+
+  <div id="menu">
+    <img src="./assets/usuario.png" alt="ícone de usuário">
+    <h2><b>Luana Prado</b></h2>
+    <p>"A prática torna o homem perfeito",<br>
+        você já deve ter ouvido essa frase <br>
+        em algum lugar da sua vida.<br>
+        Que lição aprendemos com isso?<br>
+        A disciplina vem com a prática.</p>
+
+    <ul>
+      <li><a href="#">Link1</a></li>
+      <li><a href="#">Link2</a></li>
+      <li><a href="#">Link3</a></li>
+      <li><a href="#">Link4</a></li>
+    </ul>
+  </div>
+
+    <div id="main-content">
+    <h1>Lista de Tarefas</h1>
+
+    <table>
+    <thead>
+      <tr>
+        <th>Dia</th>
+        <th>Noite</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          
+          <ul>
+            <li>Acordar ás 4:40</li><br>
+            <li>Sair ás 5h para ir a academia</li><br>
+            <li>Voltar para casa ás 6h</li><br>
+            <li>Tomar banho e me arrumar</li><br>
+            <li>Tomar café da manhã</li><br>
+            <li>Escovar os dentes</li><br>
+            <li>Ir para o trabalho</li><br>
+            <li>Chegando no trabalho trocar de roupa</li><br>
+            <li>Fazer a contagem e triagem da fila </li><br>
+            <li>Tirar dúvidas e dar informações aos clientes</li><br>
+            <li>Digitalizar documentos</li><br>
+          </ul>
+        </td>
+        <td>
+          
+          <ul>
+            <li>Largar do trabalho e ir para o curso</li><br>
+            <li>Assistir as aulas</li><br>
+            <li>Fazer as atividades dada em sala de aula</li><br>
+            <li>Fazer anotações do conteúdo dado em sala</li><br>
+            <li>Largar do curso e ir para casa</li><br>
+            <li>Chegar em casa e jantar</li><br>
+            <li>Tomar banho e trocar de roupa</li><br>
+            <li>Levar meu cachorro pra passear e dar a comida dele</li><br>
+            <li>Escovar os dentes</li><br>
+            <li>Organizar minha bolsa</li><br>
+            <li>Dormir para no dia seguinte trabalhar</li><br>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+    </table>
+    <script>
+        function adicionarTarefa(periodo) {
+          var novaTarefa = prompt('Digite a nova tarefa para ' + periodo + ':');
+          
+          if (novaTarefa) {
+            var tabela = document.querySelector('#main-content table');
+            var novaLinha = tabela.insertRow();
+      
+            var celulaDia = novaLinha.insertCell(0);
+            var celulaNoite = novaLinha.insertCell(1);
+      
+            if (periodo === 'Dia') {
+              celulaDia.innerHTML = '<li>' + novaTarefa + '</li>';
+            } else {
+              celulaNoite.innerHTML = '<li>' + novaTarefa + '</li>';
+            }
+          }
+        }
+      
+        function removerTarefa(periodo) {
+          var tabela = document.querySelector('#main-content table');
+          var linhas = tabela.getElementsByTagName('tr');
+          var ultimaLinha = linhas[linhas.length - 1];
+      
+          if (ultimaLinha) {
+            var celulaDia = ultimaLinha.cells[0];
+            var celulaNoite = ultimaLinha.cells[1];
+      
+            if (periodo === 'Dia') {
+              if (celulaDia.children.length > 0) {
+                celulaDia.children[0].remove();
+              }
+            } else {
+              if (celulaNoite.children.length > 0) {
+                celulaNoite.children[0].remove();
+              }
+            }
+          }
+        }
+      </script>
+      
+      <button onclick="adicionarTarefa('Dia')">Adicionar Tarefa (Dia)</button>
+      <button onclick="removerTarefa('Dia')">Remover Tarefa (Dia)</button>
+      
+      <button onclick="adicionarTarefa('Noite')">Adicionar Tarefa (Noite)</button>
+      <button onclick="removerTarefa('Noite')">Remover Tarefa (Noite)</button>
+    <!-- Adicione aqui a lógica para a lista de tarefas dinâmica -->
+
+</body>
+</html>
+
